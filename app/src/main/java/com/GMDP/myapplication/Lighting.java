@@ -46,10 +46,10 @@ public class Lighting extends AppCompatActivity {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
-                    new post_command_on().execute();
+                    new post_command("0010").execute();
                     Toast.makeText(Lighting.this, "Successfully Turn On!", Toast.LENGTH_LONG).show();
                 } else {
-                    new post_command_off().execute();
+                    new post_command("0000").execute();
                     Toast.makeText(Lighting.this, "Successfully Turn Off!", Toast.LENGTH_LONG).show();
                 }
             }
@@ -58,8 +58,12 @@ public class Lighting extends AppCompatActivity {
 
 }
 
-class post_command_on extends AsyncTask<Void, Void, Void>
+class post_command extends AsyncTask<Void, Void, Void>
 {
+    public String command;
+    public post_command() {this.command = "1111";}
+    public post_command(String command) {this.command = command;}
+
     @Override
     protected Void doInBackground(Void...P) {
         try {
@@ -74,64 +78,7 @@ class post_command_on extends AsyncTask<Void, Void, Void>
             List<NameValuePair> params = new ArrayList<NameValuePair>();
             Log.d("hello", "1");
             params.add(new BasicNameValuePair("api_key", "NU6M3B6JB1Q3IR76"));
-            params.add(new BasicNameValuePair("command_string", "0010"));
-            params.add(new BasicNameValuePair("position", "1"));
-            Log.d("hello", "2");
-            OutputStream os = con.getOutputStream();
-            BufferedWriter writer = new BufferedWriter(
-                    new OutputStreamWriter(os, "UTF-8"));
-            writer.write(getQuery(params));
-            writer.flush();
-            writer.close();
-            os.close();
-            con.connect();
-            Log.d("hello", getQuery(params));
-            Log.d("hello", Integer.toString(con.getResponseCode()));
-        } catch (Exception e)
-        {
-            e.printStackTrace();
-        }
-        return null;
-    }
-
-    private String getQuery(List<NameValuePair> params) throws UnsupportedEncodingException
-    {
-        StringBuilder result = new StringBuilder();
-        boolean first = true;
-
-        for (NameValuePair pair : params)
-        {
-            if (first)
-                first = false;
-            else
-                result.append("&");
-
-            result.append(URLEncoder.encode(pair.getName(), "UTF-8"));
-            result.append("=");
-            result.append(URLEncoder.encode(pair.getValue(), "UTF-8"));
-        }
-
-        return result.toString();
-    }
-}
-
-class post_command_off extends AsyncTask<Void, Void, Void>
-{
-    @Override
-    protected Void doInBackground(Void...P) {
-        try {
-            URL baseURL = new URL("https://api.thingspeak.com/talkbacks/31641/commands");
-            HttpsURLConnection con = (HttpsURLConnection) baseURL.openConnection();
-            con.setRequestMethod("POST");
-            con.setReadTimeout(10000);
-            con.setConnectTimeout(15000);
-            con.setDoInput(true);
-            con.setDoOutput(true);
-
-            List<NameValuePair> params = new ArrayList<NameValuePair>();
-            Log.d("hello", "1");
-            params.add(new BasicNameValuePair("api_key", "NU6M3B6JB1Q3IR76"));
-            params.add(new BasicNameValuePair("command_string", "0000"));
+            params.add(new BasicNameValuePair("command_string", command));
             params.add(new BasicNameValuePair("position", "1"));
             Log.d("hello", "2");
             OutputStream os = con.getOutputStream();
