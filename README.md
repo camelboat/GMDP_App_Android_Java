@@ -2,4 +2,4 @@
 
 ## Introduction
 
-Detailed information would be added la
+Detailed information would be added later
