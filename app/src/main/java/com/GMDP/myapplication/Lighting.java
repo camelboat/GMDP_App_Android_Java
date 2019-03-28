@@ -114,7 +114,6 @@ class post_command extends AsyncTask<Void, Void, Void>
             result.append("=");
             result.append(URLEncoder.encode(pair.getValue(), "UTF-8"));
         }
-
         return result.toString();
     }
 }
