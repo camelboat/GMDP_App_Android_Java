@@ -7,18 +7,34 @@
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context=".MainActivity">
 
+    <EditText
+        android:id="@+id/editText"
+        android:layout_width="133dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="56dp"
+        android:layout_marginEnd="148dp"
+        android:layout_marginRight="148dp"
+        android:background="@null"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="LIGHT #1"
+        android:textSize="32dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/content_frame" />
+
     <Switch
         android:id="@+id/light_switch_1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="17dp"
-        android:layout_marginRight="17dp"
-        android:text="Light 1"
-        android:textOff="Off"
-        android:textOn="On"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="124dp"
+        android:layout_marginEnd="308dp"
+        android:layout_marginRight="308dp"
+        android:scaleX="5"
+        android:scaleY="5"
+        android:textOff=""
+        android:textOn=""
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="@+id/content_frame" />
 
     <!--<TextView-->
     <!--android:layout_width="wrap_content"-->
@@ -35,7 +51,11 @@
         android:layout_height="match_parent"
         app:layout_constraintBottom_toTopOf="parent"
         app:layout_constraintEnd_toStartOf="parent"
+        app:layout_constraintHorizontal_bias="0.192"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0">
+
+    </FrameLayout>
 
 </android.support.constraint.ConstraintLayout>

@@ -1,5 +1,6 @@
 package com.GMDP.myapplication;
 
+import android.app.ActivityOptions;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -81,15 +82,16 @@ public class MainActivity extends AppCompatActivity
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
-        Intent intent = new Intent(this, Lighting.class);
-        startActivity(intent);
+
         int id = item.getItemId();
 
         if (id == R.id.nav_lighting) {
             // Handle the camera action
-
+            Intent intent = new Intent(this, Lighting.class);
+            startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(this).toBundle());
         } else if (id == R.id.nav_gallery) {
-
+            Intent intent = new Intent(this, LightingActivity.class);
+            startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(this).toBundle());
         } else if (id == R.id.nav_slideshow) {
 
         } else if (id == R.id.nav_manage) {
